@@ -1,0 +1,62 @@
+{
+    "name": "first-network-district",
+    "version": "1.0.0",
+    "client": {
+        "organization": "Orgdistrict",
+        "connection": {
+            "timeout": {
+                "peer": {
+                    "endorser": "60000"
+                }
+            }
+        }
+    },
+    "organizations": {
+        "Orgdistrict": {
+            "mspid": "DistrictMSP",
+            "peers": [
+                "peer0.district.com",
+                "peer1.district.com"
+            ],
+            "certificateAuthorities": [
+                "ca.district.com"
+            ]
+        }
+    },
+    "peers": {
+        "peer0.district.com": {
+            "url": "grpcs://localhost:7051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICRzCCAe6gAwIBAgIRAOYMu+z+WyV02QqqH7aTA88wCgYIKoZIzj0EAwIwbjEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xFTATBgNVBAoTDGRpc3RyaWN0LmNvbTEbMBkGA1UEAxMSdGxzY2Eu\nZGlzdHJpY3QuY29tMB4XDTI2MDMxNDIxMTcwMFoXDTM2MDMxMTIxMTcwMFowbjEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xFTATBgNVBAoTDGRpc3RyaWN0LmNvbTEbMBkGA1UEAxMSdGxzY2Eu\nZGlzdHJpY3QuY29tMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE8kDKaoD1+O6Z\nx7d4xAooiFQTaLaVGlSNsMCP5lhNTemSENBRYd+tnmoTzmC1Cxw2Pg1Dw9w4T2tO\nK/bhOS53HaNtMGswDgYDVR0PAQH/BAQDAgGmMB0GA1UdJQQWMBQGCCsGAQUFBwMC\nBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MCkGA1UdDgQiBCDLElAwMIFwTQNV\nphrgRg/4AuDEq9mQvICq2EcDwizu5zAKBggqhkjOPQQDAgNHADBEAiASrbFgD4sn\nAKiq2VFUMVthaknXCDOYExS0UCjhNvuxkwIgW8VeaJL6bTbHx0kqTz46QZMEbu1h\nBHSnuRoP7ES6/aY=\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer0.district.com",
+                "hostnameOverride": "peer0.district.com"
+            }
+        },
+	"peer1.district.com": {
+            "url": "grpcs://localhost:8051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICRzCCAe6gAwIBAgIRAOYMu+z+WyV02QqqH7aTA88wCgYIKoZIzj0EAwIwbjEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xFTATBgNVBAoTDGRpc3RyaWN0LmNvbTEbMBkGA1UEAxMSdGxzY2Eu\nZGlzdHJpY3QuY29tMB4XDTI2MDMxNDIxMTcwMFoXDTM2MDMxMTIxMTcwMFowbjEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xFTATBgNVBAoTDGRpc3RyaWN0LmNvbTEbMBkGA1UEAxMSdGxzY2Eu\nZGlzdHJpY3QuY29tMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE8kDKaoD1+O6Z\nx7d4xAooiFQTaLaVGlSNsMCP5lhNTemSENBRYd+tnmoTzmC1Cxw2Pg1Dw9w4T2tO\nK/bhOS53HaNtMGswDgYDVR0PAQH/BAQDAgGmMB0GA1UdJQQWMBQGCCsGAQUFBwMC\nBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MCkGA1UdDgQiBCDLElAwMIFwTQNV\nphrgRg/4AuDEq9mQvICq2EcDwizu5zAKBggqhkjOPQQDAgNHADBEAiASrbFgD4sn\nAKiq2VFUMVthaknXCDOYExS0UCjhNvuxkwIgW8VeaJL6bTbHx0kqTz46QZMEbu1h\nBHSnuRoP7ES6/aY=\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer1.district.com",
+                "hostnameOverride": "peer1.district.com"
+            }
+        }
+
+	
+    },
+    "certificateAuthorities": {
+        "ca.district.com": {
+            "url": "https://ca.district.com:7054",
+            "caName": "ca.district.com",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICRzCCAe6gAwIBAgIRAOYMu+z+WyV02QqqH7aTA88wCgYIKoZIzj0EAwIwbjEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xFTATBgNVBAoTDGRpc3RyaWN0LmNvbTEbMBkGA1UEAxMSdGxzY2Eu\nZGlzdHJpY3QuY29tMB4XDTI2MDMxNDIxMTcwMFoXDTM2MDMxMTIxMTcwMFowbjEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xFTATBgNVBAoTDGRpc3RyaWN0LmNvbTEbMBkGA1UEAxMSdGxzY2Eu\nZGlzdHJpY3QuY29tMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE8kDKaoD1+O6Z\nx7d4xAooiFQTaLaVGlSNsMCP5lhNTemSENBRYd+tnmoTzmC1Cxw2Pg1Dw9w4T2tO\nK/bhOS53HaNtMGswDgYDVR0PAQH/BAQDAgGmMB0GA1UdJQQWMBQGCCsGAQUFBwMC\nBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MCkGA1UdDgQiBCDLElAwMIFwTQNV\nphrgRg/4AuDEq9mQvICq2EcDwizu5zAKBggqhkjOPQQDAgNHADBEAiASrbFgD4sn\nAKiq2VFUMVthaknXCDOYExS0UCjhNvuxkwIgW8VeaJL6bTbHx0kqTz46QZMEbu1h\nBHSnuRoP7ES6/aY=\n-----END CERTIFICATE-----\n"
+            },
+            "httpOptions": {
+                "verify": false
+            }
+        }
+    }
+}

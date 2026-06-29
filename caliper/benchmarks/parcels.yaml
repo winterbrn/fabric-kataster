@@ -1,0 +1,38 @@
+test:
+  name: parcels
+  description: Parcel chaincode benchmark (GetAllParcels query + CreateParcel invoke)
+  workers:
+    type: local
+    number: 2
+
+  rounds:
+    - label: GetAllParcels
+      description: Query all parcels (read-only)
+      txNumber: 50
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 5
+      workload:
+        module: caliper/workloads/getAllParcels.js
+        arguments:
+          channel: landregistry
+          contractId: parcel
+          invokerMspId: CadastreMSP
+          invokerIdentity: cadastreAdmin
+
+    - label: CreateParcel
+      description: Create new parcels (invoke)
+      txNumber: 50
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 2
+      workload:
+        module: caliper/workloads/createParcel.js
+        arguments:
+          channel: landregistry
+          contractId: parcel
+          invokerMspId: DistrictMSP
+          invokerIdentity: districtAdmin
+

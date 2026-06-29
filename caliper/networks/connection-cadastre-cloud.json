@@ -1,0 +1,140 @@
+{
+    "name": "first-network-cadastre",
+    "version": "1.0.0",
+    "client": {
+        "organization": "Orgcadastre",
+        "connection": {
+            "timeout": {
+                "peer": {
+                    "endorser": "60000"
+                },
+                "orderer": "30000"
+            }
+        }
+    },
+    "channels": {
+        "landregistry": {
+            "orderers": [
+                "orderer.orderer.com",
+                "orderer2.orderer.com",
+                "orderer3.orderer.com"
+            ],
+            "peers": {
+                "peer0.cadastre.com": {
+                    "endorsingPeer": true,
+                    "chaincodeQuery": true,
+                    "ledgerQuery": true,
+                    "eventSource": true
+                },
+                "peer0.district.com": {
+                    "endorsingPeer": true,
+                    "chaincodeQuery": false,
+                    "ledgerQuery": false,
+                    "eventSource": false
+                }
+            }
+        }
+    },
+    "organizations": {
+        "Orgcadastre": {
+            "mspid": "CadastreMSP",
+            "peers": [
+                "peer0.cadastre.com",
+                "peer1.cadastre.com"
+            ],
+            "certificateAuthorities": [
+                "ca.cadastre.com"
+            ]
+        },
+        "Orgdistrict": {
+            "mspid": "DistrictMSP",
+            "peers": [
+                "peer0.district.com",
+                "peer1.district.com"
+            ]
+        }
+    },
+    "orderers": {
+        "orderer.orderer.com": {
+            "url": "grpcs://localhost:7050",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICRDCCAeqgAwIBAgIRAJpNyiabQxG+wgveefWYeR4wCgYIKoZIzj0EAwIwbDEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xFDASBgNVBAoTC29yZGVyZXIuY29tMRowGAYDVQQDExF0bHNjYS5v\ncmRlcmVyLmNvbTAeFw0yNjAzMTQyMTE3MDBaFw0zNjAzMTEyMTE3MDBaMGwxCzAJ\nBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4gRnJh\nbmNpc2NvMRQwEgYDVQQKEwtvcmRlcmVyLmNvbTEaMBgGA1UEAxMRdGxzY2Eub3Jk\nZXJlci5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAARneCNdtKK2zR5j+Djx\ntp4OkCSHfTvZjRhNfWRofGFNwtNknDuRFFpbCNGEZ1RhN5LVatJHowKO+0uNZoVD\n0TM7o20wazAOBgNVHQ8BAf8EBAMCAaYwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsG\nAQUFBwMBMA8GA1UdEwEB/wQFMAMBAf8wKQYDVR0OBCIEIL4v/txw9F49VYj+hIjh\nhTytG+sGQnZhuBFb8vJ+geLyMAoGCCqGSM49BAMCA0gAMEUCIQD8R8CjS3u/CjII\nfKHpC9L2Z7kc6wADYOuSc6fsRm7IjQIgHWoag9sMZzP12RYTENoP01NeIPqpB5Me\n+eANqmIsGt4=\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "orderer.orderer.com"
+            }
+        },
+        "orderer2.orderer.com": {
+            "url": "grpcs://10.186.0.2:8050",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICRDCCAeqgAwIBAgIRAJpNyiabQxG+wgveefWYeR4wCgYIKoZIzj0EAwIwbDEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xFDASBgNVBAoTC29yZGVyZXIuY29tMRowGAYDVQQDExF0bHNjYS5v\ncmRlcmVyLmNvbTAeFw0yNjAzMTQyMTE3MDBaFw0zNjAzMTEyMTE3MDBaMGwxCzAJ\nBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4gRnJh\nbmNpc2NvMRQwEgYDVQQKEwtvcmRlcmVyLmNvbTEaMBgGA1UEAxMRdGxzY2Eub3Jk\nZXJlci5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAARneCNdtKK2zR5j+Djx\ntp4OkCSHfTvZjRhNfWRofGFNwtNknDuRFFpbCNGEZ1RhN5LVatJHowKO+0uNZoVD\n0TM7o20wazAOBgNVHQ8BAf8EBAMCAaYwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsG\nAQUFBwMBMA8GA1UdEwEB/wQFMAMBAf8wKQYDVR0OBCIEIL4v/txw9F49VYj+hIjh\nhTytG+sGQnZhuBFb8vJ+geLyMAoGCCqGSM49BAMCA0gAMEUCIQD8R8CjS3u/CjII\nfKHpC9L2Z7kc6wADYOuSc6fsRm7IjQIgHWoag9sMZzP12RYTENoP01NeIPqpB5Me\n+eANqmIsGt4=\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "orderer2.orderer.com"
+            }
+        },
+        "orderer3.orderer.com": {
+            "url": "grpcs://10.186.0.2:9050",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICRDCCAeqgAwIBAgIRAJpNyiabQxG+wgveefWYeR4wCgYIKoZIzj0EAwIwbDEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xFDASBgNVBAoTC29yZGVyZXIuY29tMRowGAYDVQQDExF0bHNjYS5v\ncmRlcmVyLmNvbTAeFw0yNjAzMTQyMTE3MDBaFw0zNjAzMTEyMTE3MDBaMGwxCzAJ\nBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4gRnJh\nbmNpc2NvMRQwEgYDVQQKEwtvcmRlcmVyLmNvbTEaMBgGA1UEAxMRdGxzY2Eub3Jk\nZXJlci5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAARneCNdtKK2zR5j+Djx\ntp4OkCSHfTvZjRhNfWRofGFNwtNknDuRFFpbCNGEZ1RhN5LVatJHowKO+0uNZoVD\n0TM7o20wazAOBgNVHQ8BAf8EBAMCAaYwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsG\nAQUFBwMBMA8GA1UdEwEB/wQFMAMBAf8wKQYDVR0OBCIEIL4v/txw9F49VYj+hIjh\nhTytG+sGQnZhuBFb8vJ+geLyMAoGCCqGSM49BAMCA0gAMEUCIQD8R8CjS3u/CjII\nfKHpC9L2Z7kc6wADYOuSc6fsRm7IjQIgHWoag9sMZzP12RYTENoP01NeIPqpB5Me\n+eANqmIsGt4=\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "orderer3.orderer.com"
+            }
+        }
+    },
+    "peers": {
+        "peer0.cadastre.com": {
+            "url": "grpcs://10.186.0.2:9051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICSDCCAe2gAwIBAgIQKTzwTgNEDc1MVqjdo1cPizAKBggqhkjOPQQDAjBuMQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy\nYW5jaXNjbzEVMBMGA1UEChMMY2FkYXN0cmUuY29tMRswGQYDVQQDExJ0bHNjYS5j\nYWRhc3RyZS5jb20wHhcNMjYwMzE0MjExNzAwWhcNMzYwMzExMjExNzAwWjBuMQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy\nYW5jaXNjbzEVMBMGA1UEChMMY2FkYXN0cmUuY29tMRswGQYDVQQDExJ0bHNjYS5j\nYWRhc3RyZS5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAAR7e52+iXNta7aQ\nF4dJD/BhuNLqAXeC+o4MeeuoLO03+Q9a8KVIirjyZaBrzWVwCVngmxLmbjruvMwT\numCEcQq4o20wazAOBgNVHQ8BAf8EBAMCAaYwHQYDVR0lBBYwFAYIKwYBBQUHAwIG\nCCsGAQUFBwMBMA8GA1UdEwEB/wQFMAMBAf8wKQYDVR0OBCIEILkCBTX1qZZf9zml\ncJHmwu1iqEpQZIiYWOtkCXfhBxWmMAoGCCqGSM49BAMCA0kAMEYCIQD5kq00RIlB\njhYxLZRLaG8MDOtvgZgZDOrtg8DgzErqvgIhAPRhdYdtVnjROmFdtNVaml1kaGsE\n1B2Il8l+AjWnGPrv\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer0.cadastre.com",
+                "hostnameOverride": "peer0.cadastre.com"
+            }
+        },
+        "peer1.cadastre.com": {
+            "url": "grpcs://10.186.0.2:10051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICSDCCAe2gAwIBAgIQKTzwTgNEDc1MVqjdo1cPizAKBggqhkjOPQQDAjBuMQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy\nYW5jaXNjbzEVMBMGA1UEChMMY2FkYXN0cmUuY29tMRswGQYDVQQDExJ0bHNjYS5j\nYWRhc3RyZS5jb20wHhcNMjYwMzE0MjExNzAwWhcNMzYwMzExMjExNzAwWjBuMQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy\nYW5jaXNjbzEVMBMGA1UEChMMY2FkYXN0cmUuY29tMRswGQYDVQQDExJ0bHNjYS5j\nYWRhc3RyZS5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAAR7e52+iXNta7aQ\nF4dJD/BhuNLqAXeC+o4MeeuoLO03+Q9a8KVIirjyZaBrzWVwCVngmxLmbjruvMwT\numCEcQq4o20wazAOBgNVHQ8BAf8EBAMCAaYwHQYDVR0lBBYwFAYIKwYBBQUHAwIG\nCCsGAQUFBwMBMA8GA1UdEwEB/wQFMAMBAf8wKQYDVR0OBCIEILkCBTX1qZZf9zml\ncJHmwu1iqEpQZIiYWOtkCXfhBxWmMAoGCCqGSM49BAMCA0kAMEYCIQD5kq00RIlB\njhYxLZRLaG8MDOtvgZgZDOrtg8DgzErqvgIhAPRhdYdtVnjROmFdtNVaml1kaGsE\n1B2Il8l+AjWnGPrv\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer1.cadastre.com",
+                "hostnameOverride": "peer1.cadastre.com"
+            }
+        },
+        "peer0.district.com": {
+            "url": "grpcs://localhost:7051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICRzCCAe6gAwIBAgIRAOYMu+z+WyV02QqqH7aTA88wCgYIKoZIzj0EAwIwbjEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xFTATBgNVBAoTDGRpc3RyaWN0LmNvbTEbMBkGA1UEAxMSdGxzY2Eu\nZGlzdHJpY3QuY29tMB4XDTI2MDMxNDIxMTcwMFoXDTM2MDMxMTIxMTcwMFowbjEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xFTATBgNVBAoTDGRpc3RyaWN0LmNvbTEbMBkGA1UEAxMSdGxzY2Eu\nZGlzdHJpY3QuY29tMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE8kDKaoD1+O6Z\nx7d4xAooiFQTaLaVGlSNsMCP5lhNTemSENBRYd+tnmoTzmC1Cxw2Pg1Dw9w4T2tO\nK/bhOS53HaNtMGswDgYDVR0PAQH/BAQDAgGmMB0GA1UdJQQWMBQGCCsGAQUFBwMC\nBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MCkGA1UdDgQiBCDLElAwMIFwTQNV\nphrgRg/4AuDEq9mQvICq2EcDwizu5zAKBggqhkjOPQQDAgNHADBEAiASrbFgD4sn\nAKiq2VFUMVthaknXCDOYExS0UCjhNvuxkwIgW8VeaJL6bTbHx0kqTz46QZMEbu1h\nBHSnuRoP7ES6/aY=\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer0.district.com",
+                "hostnameOverride": "peer0.district.com"
+            }
+        },
+        "peer1.district.com": {
+            "url": "grpcs://localhost:8051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICRzCCAe6gAwIBAgIRAOYMu+z+WyV02QqqH7aTA88wCgYIKoZIzj0EAwIwbjEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xFTATBgNVBAoTDGRpc3RyaWN0LmNvbTEbMBkGA1UEAxMSdGxzY2Eu\nZGlzdHJpY3QuY29tMB4XDTI2MDMxNDIxMTcwMFoXDTM2MDMxMTIxMTcwMFowbjEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xFTATBgNVBAoTDGRpc3RyaWN0LmNvbTEbMBkGA1UEAxMSdGxzY2Eu\nZGlzdHJpY3QuY29tMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE8kDKaoD1+O6Z\nx7d4xAooiFQTaLaVGlSNsMCP5lhNTemSENBRYd+tnmoTzmC1Cxw2Pg1Dw9w4T2tO\nK/bhOS53HaNtMGswDgYDVR0PAQH/BAQDAgGmMB0GA1UdJQQWMBQGCCsGAQUFBwMC\nBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MCkGA1UdDgQiBCDLElAwMIFwTQNV\nphrgRg/4AuDEq9mQvICq2EcDwizu5zAKBggqhkjOPQQDAgNHADBEAiASrbFgD4sn\nAKiq2VFUMVthaknXCDOYExS0UCjhNvuxkwIgW8VeaJL6bTbHx0kqTz46QZMEbu1h\nBHSnuRoP7ES6/aY=\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer1.district.com",
+                "hostnameOverride": "peer1.district.com"
+            }
+        }
+    },
+    "certificateAuthorities": {
+        "ca.cadastre.com": {
+            "url": "https://ca.cadastre.com:8054",
+            "caName": "ca.cadastre.com",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICSDCCAe2gAwIBAgIQKTzwTgNEDc1MVqjdo1cPizAKBggqhkjOPQQDAjBuMQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy\nYW5jaXNjbzEVMBMGA1UEChMMY2FkYXN0cmUuY29tMRswGQYDVQQDExJ0bHNjYS5j\nYWRhc3RyZS5jb20wHhcNMjYwMzE0MjExNzAwWhcNMzYwMzExMjExNzAwWjBuMQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy\nYW5jaXNjbzEVMBMGA1UEChMMY2FkYXN0cmUuY29tMRswGQYDVQQDExJ0bHNjYS5j\nYWRhc3RyZS5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAAR7e52+iXNta7aQ\nF4dJD/BhuNLqAXeC+o4MeeuoLO03+Q9a8KVIirjyZaBrzWVwCVngmxLmbjruvMwT\numCEcQq4o20wazAOBgNVHQ8BAf8EBAMCAaYwHQYDVR0lBBYwFAYIKwYBBQUHAwIG\nCCsGAQUFBwMBMA8GA1UdEwEB/wQFMAMBAf8wKQYDVR0OBCIEILkCBTX1qZZf9zml\ncJHmwu1iqEpQZIiYWOtkCXfhBxWmMAoGCCqGSM49BAMCA0kAMEYCIQD5kq00RIlB\njhYxLZRLaG8MDOtvgZgZDOrtg8DgzErqvgIhAPRhdYdtVnjROmFdtNVaml1kaGsE\n1B2Il8l+AjWnGPrv\n-----END CERTIFICATE-----\n"
+            },
+            "httpOptions": {
+                "verify": false
+            }
+        }
+    }
+}

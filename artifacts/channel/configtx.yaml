@@ -1,0 +1,219 @@
+# Copyright IBM Corp. All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+---
+################################################################################
+#
+#   Section: Organizations
+#
+################################################################################
+Organizations:
+  - &OrdererOrg
+    Name: OrdererOrg
+    ID: OrdererMSP
+    MSPDir: crypto-config/ordererOrganizations/orderer.com/msp
+    Policies:
+      Readers:
+        Type: Signature
+        Rule: "OR('OrdererMSP.member')"
+      Writers:
+        Type: Signature
+        Rule: "OR('OrdererMSP.member')"
+      Admins:
+        Type: Signature
+        Rule: "OR('OrdererMSP.admin')"
+    OrdererEndpoints:
+      - orderer.orderer.com:7050
+      - orderer2.orderer.com:8050
+      - orderer3.orderer.com:9050
+
+  - &District
+    Name: DistrictMSP
+    ID: DistrictMSP
+    MSPDir: crypto-config/peerOrganizations/district.com/msp
+    Policies:
+      Readers:
+        Type: Signature
+        Rule: "OR('DistrictMSP.admin', 'DistrictMSP.peer', 'DistrictMSP.client')"
+      Writers:
+        Type: Signature
+        Rule: "OR('DistrictMSP.admin', 'DistrictMSP.client')"
+      Admins:
+        Type: Signature
+        Rule: "OR('DistrictMSP.admin')"
+      Endorsement:
+        Type: Signature
+        Rule: "OR('DistrictMSP.peer')"
+    AnchorPeers:
+      - Host: peer0.district.com
+        Port: 7051
+
+  - &Cadastre
+    Name: CadastreMSP
+    ID: CadastreMSP
+    MSPDir: crypto-config/peerOrganizations/cadastre.com/msp
+    Policies:
+      Readers:
+        Type: Signature
+        Rule: "OR('CadastreMSP.admin', 'CadastreMSP.peer', 'CadastreMSP.client')"
+      Writers:
+        Type: Signature
+        Rule: "OR('CadastreMSP.admin', 'CadastreMSP.client')"
+      Admins:
+        Type: Signature
+        Rule: "OR('CadastreMSP.admin')"
+      Endorsement:
+        Type: Signature
+        Rule: "OR('CadastreMSP.peer')"
+    AnchorPeers:
+      - Host: peer0.cadastre.com
+        Port: 9051
+
+################################################################################
+#
+#   SECTION: Capabilities
+#
+################################################################################
+Capabilities:
+  Channel: &ChannelCapabilities
+    V2_0: true
+
+  Orderer: &OrdererCapabilities
+    V2_0: true
+
+  Application: &ApplicationCapabilities
+    V2_0: true
+
+################################################################################
+#
+#   SECTION: Application
+#
+################################################################################
+Application: &ApplicationDefaults
+  Organizations:
+  Policies:
+    Readers:
+      Type: ImplicitMeta
+      Rule: "ANY Readers"
+    Writers:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+    Admins:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Admins"
+    LifecycleEndorsement:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Endorsement"
+    Endorsement:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Endorsement"
+  Capabilities:
+    <<: *ApplicationCapabilities
+
+################################################################################
+#
+#   SECTION: Orderer
+#
+################################################################################
+Orderer: &OrdererDefaults
+  Addresses:
+    - orderer.orderer.com:7050
+    - orderer2.orderer.com:8050
+    - orderer3.orderer.com:9050
+
+  BatchTimeout: 2s
+
+  BatchSize:
+    MaxMessageCount: 10
+    AbsoluteMaxBytes: 99 MB
+    PreferredMaxBytes: 512 KB
+
+  Organizations:
+
+  Policies:
+    Readers:
+      Type: ImplicitMeta
+      Rule: "ANY Readers"
+    Writers:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+    Admins:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Admins"
+    BlockValidation:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+
+################################################################################
+#
+#   CHANNEL
+#
+################################################################################
+Channel: &ChannelDefaults
+  Policies:
+    Readers:
+      Type: ImplicitMeta
+      Rule: "ANY Readers"
+    Writers:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+    Admins:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Admins"
+  Capabilities:
+    <<: *ChannelCapabilities
+
+################################################################################
+#
+#   PROFILES
+#
+################################################################################
+Profiles:
+
+  LandRegistryChannel:
+    Consortium: LandRegistryConsortium
+    <<: *ChannelDefaults
+    Application:
+      <<: *ApplicationDefaults
+      Organizations:
+        - *District
+        - *Cadastre
+      Capabilities:
+        <<: *ApplicationCapabilities
+
+  OrdererGenesis:
+    <<: *ChannelDefaults
+    Capabilities:
+      <<: *ChannelCapabilities
+    Orderer:
+      <<: *OrdererDefaults
+      OrdererType: etcdraft
+      EtcdRaft:
+        Consenters:
+          - Host: orderer.orderer.com
+            Port: 7050
+            ClientTLSCert: crypto-config/ordererOrganizations/orderer.com/orderers/orderer.orderer.com/tls/server.crt
+            ServerTLSCert: crypto-config/ordererOrganizations/orderer.com/orderers/orderer.orderer.com/tls/server.crt
+          - Host: orderer2.orderer.com
+            Port: 8050
+            ClientTLSCert: crypto-config/ordererOrganizations/orderer.com/orderers/orderer2.orderer.com/tls/server.crt
+            ServerTLSCert: crypto-config/ordererOrganizations/orderer.com/orderers/orderer2.orderer.com/tls/server.crt
+          - Host: orderer3.orderer.com
+            Port: 9050
+            ClientTLSCert: crypto-config/ordererOrganizations/orderer.com/orderers/orderer3.orderer.com/tls/server.crt
+            ServerTLSCert: crypto-config/ordererOrganizations/orderer.com/orderers/orderer3.orderer.com/tls/server.crt
+      Addresses:
+        - orderer.orderer.com:7050
+        - orderer2.orderer.com:8050
+        - orderer3.orderer.com:9050
+      Organizations:
+        - *OrdererOrg
+      Capabilities:
+        <<: *OrdererCapabilities
+    Consortiums:
+      LandRegistryConsortium:
+        Organizations:
+          - *District
+          - *Cadastre

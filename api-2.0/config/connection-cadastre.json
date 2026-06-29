@@ -1,0 +1,62 @@
+{
+    "name": "first-network-cadastre",
+    "version": "1.0.0",
+    "client": {
+        "organization": "Orgcadastre",
+        "connection": {
+            "timeout": {
+                "peer": {
+                    "endorser": "60000"
+                }
+            }
+        }
+    },
+    "organizations": {
+        "Orgcadastre": {
+            "mspid": "CadastreMSP",
+            "peers": [
+                "peer0.cadastre.com",
+                "peer1.cadastre.com"
+            ],
+            "certificateAuthorities": [
+                "ca.cadastre.com"
+            ]
+        }
+    },
+    "peers": {
+        "peer0.cadastre.com": {
+            "url": "grpcs://localhost:9051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICSDCCAe2gAwIBAgIQKTzwTgNEDc1MVqjdo1cPizAKBggqhkjOPQQDAjBuMQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy\nYW5jaXNjbzEVMBMGA1UEChMMY2FkYXN0cmUuY29tMRswGQYDVQQDExJ0bHNjYS5j\nYWRhc3RyZS5jb20wHhcNMjYwMzE0MjExNzAwWhcNMzYwMzExMjExNzAwWjBuMQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy\nYW5jaXNjbzEVMBMGA1UEChMMY2FkYXN0cmUuY29tMRswGQYDVQQDExJ0bHNjYS5j\nYWRhc3RyZS5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAAR7e52+iXNta7aQ\nF4dJD/BhuNLqAXeC+o4MeeuoLO03+Q9a8KVIirjyZaBrzWVwCVngmxLmbjruvMwT\numCEcQq4o20wazAOBgNVHQ8BAf8EBAMCAaYwHQYDVR0lBBYwFAYIKwYBBQUHAwIG\nCCsGAQUFBwMBMA8GA1UdEwEB/wQFMAMBAf8wKQYDVR0OBCIEILkCBTX1qZZf9zml\ncJHmwu1iqEpQZIiYWOtkCXfhBxWmMAoGCCqGSM49BAMCA0kAMEYCIQD5kq00RIlB\njhYxLZRLaG8MDOtvgZgZDOrtg8DgzErqvgIhAPRhdYdtVnjROmFdtNVaml1kaGsE\n1B2Il8l+AjWnGPrv\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer0.cadastre.com",
+                "hostnameOverride": "peer0.cadastre.com"
+            }
+        },
+	"peer1.cadastre.com": {
+            "url": "grpcs://localhost:10051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICSDCCAe2gAwIBAgIQKTzwTgNEDc1MVqjdo1cPizAKBggqhkjOPQQDAjBuMQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy\nYW5jaXNjbzEVMBMGA1UEChMMY2FkYXN0cmUuY29tMRswGQYDVQQDExJ0bHNjYS5j\nYWRhc3RyZS5jb20wHhcNMjYwMzE0MjExNzAwWhcNMzYwMzExMjExNzAwWjBuMQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy\nYW5jaXNjbzEVMBMGA1UEChMMY2FkYXN0cmUuY29tMRswGQYDVQQDExJ0bHNjYS5j\nYWRhc3RyZS5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAAR7e52+iXNta7aQ\nF4dJD/BhuNLqAXeC+o4MeeuoLO03+Q9a8KVIirjyZaBrzWVwCVngmxLmbjruvMwT\numCEcQq4o20wazAOBgNVHQ8BAf8EBAMCAaYwHQYDVR0lBBYwFAYIKwYBBQUHAwIG\nCCsGAQUFBwMBMA8GA1UdEwEB/wQFMAMBAf8wKQYDVR0OBCIEILkCBTX1qZZf9zml\ncJHmwu1iqEpQZIiYWOtkCXfhBxWmMAoGCCqGSM49BAMCA0kAMEYCIQD5kq00RIlB\njhYxLZRLaG8MDOtvgZgZDOrtg8DgzErqvgIhAPRhdYdtVnjROmFdtNVaml1kaGsE\n1B2Il8l+AjWnGPrv\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer1.cadastre.com",
+                "hostnameOverride": "peer1.cadastre.com"
+            }
+        }
+
+	
+    },
+    "certificateAuthorities": {
+        "ca.cadastre.com": {
+            "url": "https://ca.cadastre.com:8054",
+            "caName": "ca.cadastre.com",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICSDCCAe2gAwIBAgIQKTzwTgNEDc1MVqjdo1cPizAKBggqhkjOPQQDAjBuMQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy\nYW5jaXNjbzEVMBMGA1UEChMMY2FkYXN0cmUuY29tMRswGQYDVQQDExJ0bHNjYS5j\nYWRhc3RyZS5jb20wHhcNMjYwMzE0MjExNzAwWhcNMzYwMzExMjExNzAwWjBuMQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy\nYW5jaXNjbzEVMBMGA1UEChMMY2FkYXN0cmUuY29tMRswGQYDVQQDExJ0bHNjYS5j\nYWRhc3RyZS5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAAR7e52+iXNta7aQ\nF4dJD/BhuNLqAXeC+o4MeeuoLO03+Q9a8KVIirjyZaBrzWVwCVngmxLmbjruvMwT\numCEcQq4o20wazAOBgNVHQ8BAf8EBAMCAaYwHQYDVR0lBBYwFAYIKwYBBQUHAwIG\nCCsGAQUFBwMBMA8GA1UdEwEB/wQFMAMBAf8wKQYDVR0OBCIEILkCBTX1qZZf9zml\ncJHmwu1iqEpQZIiYWOtkCXfhBxWmMAoGCCqGSM49BAMCA0kAMEYCIQD5kq00RIlB\njhYxLZRLaG8MDOtvgZgZDOrtg8DgzErqvgIhAPRhdYdtVnjROmFdtNVaml1kaGsE\n1B2Il8l+AjWnGPrv\n-----END CERTIFICATE-----\n"
+            },
+            "httpOptions": {
+                "verify": false
+            }
+        }
+    }
+}

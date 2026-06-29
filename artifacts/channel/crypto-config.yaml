@@ -1,0 +1,30 @@
+# Copyright IBM Corp. All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+OrdererOrgs:
+  - Name: Orderer
+    Domain: orderer.com
+    EnableNodeOUs: true
+    Specs:
+      - Hostname: orderer
+      - Hostname: orderer2
+      - Hostname: orderer3
+
+PeerOrgs:
+  - Name: District
+    Domain: district.com
+    EnableNodeOUs: true
+    Template:
+      Count: 2
+    Users:
+      Count: 3
+
+  - Name: Cadastre
+    Domain: cadastre.com
+    EnableNodeOUs: true
+    Template:
+      Count: 2
+    Users:
+      Count: 3

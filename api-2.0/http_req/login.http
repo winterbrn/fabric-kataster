@@ -1,0 +1,35 @@
+@base_url = http://localhost:4000
+@fabric_org = Cadastre
+@fabric_username = api
+
+GET {{base_url}}/health
+
+###
+POST {{base_url}}/users
+Content-Type: application/json
+
+{
+  "username": "alice",
+  "orgName": "{{fabric_org}}"
+}
+
+###
+GET {{base_url}}/channels/landregistry/chaincodes/land-registry?fcn=GetAllParcels&args=[]
+X-Fabric-Org: {{fabric_org}}
+X-Fabric-Username: {{fabric_username}}
+
+###
+POST {{base_url}}/channels/landregistry/chaincodes/land-registry
+Content-Type: application/json
+X-Fabric-Org: {{fabric_org}}
+X-Fabric-Username: {{fabric_username}}
+
+{
+  "fcn": "CreateAsset",
+  "args": ["asset1", "value1"]
+}
+
+###
+GET {{base_url}}/channels/landregistry/chaincodes/land-registry?fcn=ReadAsset&args=["asset1"]
+X-Fabric-Org: {{fabric_org}}
+X-Fabric-Username: {{fabric_username}}

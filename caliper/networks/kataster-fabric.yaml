@@ -1,0 +1,36 @@
+name: kataster-fabric
+version: "2.0.0"
+
+caliper:
+  blockchain: fabric
+
+channels:
+  - channelName: landregistry
+    contracts:
+      - id: parcel
+
+organizations:
+  - mspid: CadastreMSP
+    identities:
+      certificates:
+        - name: cadastreAdmin
+          clientPrivateKey:
+            path: artifacts/channel/crypto-config/peerOrganizations/cadastre.com/users/Admin@cadastre.com/msp/keystore/priv_sk
+          clientSignedCert:
+            path: artifacts/channel/crypto-config/peerOrganizations/cadastre.com/users/Admin@cadastre.com/msp/signcerts/Admin@cadastre.com-cert.pem
+    connectionProfile:
+      path: api-2.0/config/connection-cadastre.json
+      discover: true
+
+  - mspid: DistrictMSP
+    identities:
+      certificates:
+        - name: districtAdmin
+          clientPrivateKey:
+            path: artifacts/channel/crypto-config/peerOrganizations/district.com/users/Admin@district.com/msp/keystore/priv_sk
+          clientSignedCert:
+            path: artifacts/channel/crypto-config/peerOrganizations/district.com/users/Admin@district.com/msp/signcerts/Admin@district.com-cert.pem
+    connectionProfile:
+      path: api-2.0/config/connection-district.json
+      discover: true
+
